@@ -9,7 +9,7 @@ A ce stade, on a :
 '''
 
 from PIL import Image
-from main.py import detect_seam calculate_cost
+from seam.py import detect_seam calculate_cost
 
 def height_redim(path_im, height):
     im = Image.open(path_im)
