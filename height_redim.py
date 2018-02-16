@@ -45,7 +45,7 @@ def main():
     '''
     Fonction principale
     '''
-    im = Image.open("../1.jpg")
+    im = Image.open("1.jpg")
     hr = height_redim(im, 300)
     return hr
     
