@@ -9,7 +9,7 @@ A ce stade, on a :
 '''
 
 from PIL import Image
-from seam.py import detect_seam calculate_cost_matrix
+from seam.py import seam_carving
 
 def height_redim(im, height):
     rotated = rotate90d(im)
