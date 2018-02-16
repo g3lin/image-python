@@ -1,6 +1,6 @@
 from PIL import Image
 import math
-def sobel(im):
+def prewitt(im):
     radius = 1
     im1 = im.load()
     im2 = Image.new('L', (im.size[0], im.size[1]))
@@ -25,12 +25,11 @@ def sobel(im):
                             Gyb+= im1[xp, yp][2] * My[nx][ny]
             G = round(math.sqrt(Gxr**2 + Gyr**2)+math.sqrt(Gxg**2 + Gyg**2)+math.sqrt(Gxb**2 + Gyb**2))
             im3[x,y] = G
-    # return im2
-    im2.show()
+    return im2
 
 def main():
     # test data
-    im = Image.open('originaux/1.jpg')
-    sobel(im)
+    im = Image.open('Images test python/originaux/1.png')
+    prewitt(im)
 if __name__ == "__main__":
     main()
