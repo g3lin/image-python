@@ -1,7 +1,5 @@
 from PIL import Image
 
-def main():
-
 def remove_seam(im,seam):
     for x in range (im.size[0]):
         for elm in seam:
