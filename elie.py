@@ -10,7 +10,8 @@ def remove_seam(im,seam):
 def shift_left(im,nombre):
     image = im.load()
     for x in range(im.size[0]):
-        image[x,y]= image[x-nombre,y]
+        for y in range(im.size[1]):
+            image[x,y]= image[x-nombre,y]
 
 if __name__ == "__name__":
     main()
