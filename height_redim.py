@@ -9,47 +9,23 @@ A ce stade, on a :
 '''
 
 from PIL import Image
-from seam.py import seam_carving
+from seam import main as seam_carving # seam_carving
 
 def height_redim(im, height):
-    rotated = rotate90d(im)
+    rotated = im.rotate(270)
     
-    #Utilisation de l'algorithme d'Antoine
-    while cop.size[0] > height: # >= peut etre ?
+    # Utilisation de l'algorithme d'Antoine
+    while rotated.size[0] > height: # >= peut etre ?
         seam_carving(rotated)
     
-    return rotated90g(rotated)
-    
-def rotate90d(im):
-    '''
-    Applique une rotation à 90° vers la droite à une image , puis la retourne 
-    '''
-    cop = Image.new("RGB", (im.size[1], im.size[0]))
-    pix = im.load()
-    pixc = cop.load()
-    for j in range(im.size[1]):
-        for i in range(im.size[0]):
-            pixc[im.size[1]-j-1, i] = pix[i,j]
-    return cop
-
-def rotate90g(im):
-    '''
-    Applique une rotation à 90° vers la gauche à une image, puis la retourne
-    '''
-    cop = Image.new("RGB", (im.size[1], im.size[0]))
-    pix = im.load()
-    pixc = cop.load()
-    for j in range(im.size[1]):
-        for i in range(im.size[0]):
-            pixc[j, im.size[0]-i-1] = pix[i,j]
-    return cop
-
-        
-    
+    return rotated.rotate(90)
 
 
-def main(im, height):
-    return height_redim(im, height)
+
+def main():
+    im = Image.open("../1.jpg")
+    hr = height_redim(im, 300)
+    return hr
     
 if __name__ == "__main__":
     main() 
