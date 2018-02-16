@@ -12,5 +12,5 @@ def shift_left(im,nombre):
     for x in range(im.size[0]):
         image[x,y]= image[x-nombre,y]
 
-if __main__ == "__main__":
+if __name__ == "__name__":
     main()
