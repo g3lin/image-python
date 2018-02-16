@@ -13,8 +13,10 @@ Ce fichier permet d'appliquer un seam carving horizontal à partir du seam carvi
 '''
 
 from PIL import Image
-from seam import detect_seam calculate_cost_matrix 
-from elie import remove_seam shift_left
+from seam import detect_seam 
+from seam import calculate_cost_matrix 
+from elie import remove_seam 
+from elie import shift_left
 
 def height_redim(im, height, im_grad):
     '''
@@ -46,7 +48,8 @@ def main():
     Fonction principale
     '''
     im = Image.open("1.jpg")
-    hr = height_redim(im, 300)
+    im_grad = Image.open("1g.jpg")
+    hr = height_redim(im, 300, im_grad)
     return hr
     
 if __name__ == "__main__":
