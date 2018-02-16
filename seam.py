@@ -2,8 +2,8 @@ from PIL import Image
 
 
 
-def calculate_cost_matrix(path_image_grad):
-    im = Image.open(path_image_grad)
+def calculate_cost_matrix(image_grad):
+    im = image_grad
     cost_matrix = []    
     pix = im.load()
 
@@ -68,7 +68,8 @@ def detect_seam(cost_matrix):
 
 def main():
     # test data
-    cm = calculate_cost_matrix('/home/antoine/dev/data_images/1g.jpg')
+    im = Image.open("/home/antoine/dev/data_images/1g.jpg")
+    cm = calculate_cost_matrix(im)
     sm = detect_seam(cm)
 
 
