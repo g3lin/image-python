@@ -3,7 +3,7 @@ from PIL import Image
 def main():
     cm = calculate_cost_matrix('/home/antoine/dev/data_images/1g.jpg')
     sm = detect_seam(cm)
-    remove_seam('/home/antoine/dev/data_images/1.jpg')
+    image_smc = remove_seam('/home/antoine/dev/data_images/1.jpg')
 
 def remove_seam(im,seam):
     for elm in seam: #pour chaque element du seam
