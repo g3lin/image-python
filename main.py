@@ -16,22 +16,22 @@ def calculate_cost_matrix(path_image_grad):
             if y>0:
                 if x-1 < 0:
                     # cas où on est à gauche de l'image
-                    c2 = pix[x,y-1][0]
-                    c3 = pix[x+1,y-1][0]
+                    c2 = cost_matrix[len(cost_matrix)-1][x]
+                    c3 = cost_matrix[len(cost_matrix)-1][x+1]
                     cost = pix[x,y][0] + min(c2,c3)
 
 
                 elif x+1 >= im.size[0]:
                     # cas où on est vers le milieu
-                    c1 = pix[x-1,y-1][0]
-                    c2 = pix[x,y-1][0]
+                    c1 = cost_matrix[len(cost_matrix)-1][x-1]
+                    c2 = cost_matrix[len(cost_matrix)-1][x]
                     cost = pix[x,y][0] + min(c1,c2)
 
                 else:
                     # cas où on est vers la droite
-                    c1 = pix[x-1,y-1][0]
-                    c2 = pix[x,y-1][0]
-                    c3 = pix[x+1,y-1][0]
+                    c1 = cost_matrix[len(cost_matrix)-1][x-1]
+                    c2 = cost_matrix[len(cost_matrix)-1][x]
+                    c3 = cost_matrix[len(cost_matrix)-1][x+1]
                     cost = pix[x,y][0] + min(c1,c2,c3)
             tabline += [cost]
 
