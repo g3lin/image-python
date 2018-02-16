@@ -9,9 +9,9 @@ A ce stade, on a :
 '''
 
 from PIL import Image
-from seam import main as seam_carving # seam_carving
+from seam import detect_seam calculate_cost_matrix 
 
-def height_redim(im, height):
+def height_redim(im, height, im_grad):
     rotated = im.rotate(270)
     
     # Utilisation de l'algorithme d'Antoine
