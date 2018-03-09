@@ -1,4 +1,7 @@
 '''
+Dernière étape : Utilisation du seam carving vertical pour faire un seam carving horizontal
+
+
 A ce stade, on dispose de : 
     - une image à traiter
     - (Anthony) sa carte d'énergie
@@ -9,7 +12,7 @@ A ce stade, on dispose de :
     - (Elie) une fonction qui décale l'image pour compenser la suppression du seam
 
 Tout cela applique un seam carving vertical
-Ce fichier permet d'appliquer un seam carving horizontal à partir du seam carving vertical déjà codé> 
+Ce fichier permet d'appliquer un seam carving horizontal à partir du seam carving vertical déjà codé
 '''
 
 from PIL import Image
