@@ -19,7 +19,7 @@ from PIL import Image
 from seam import detect_seam 
 from seam import calculate_cost_matrix 
 from elie import remove_seam 
-from elie import shift_left
+from dual_gradient import gradient
 
 def height_redim(im, height, im_grad):
     '''
@@ -38,9 +38,8 @@ def height_redim(im, height, im_grad):
         cost_matrix = calculate_cost_matrix(rotated_grad)
         seam = detect_seam(cost_matrix)
 
-        # Partie d'Elie (elie.py)
+        # Partie d'Elie (elie.py) 
         rotated = remove_seam(rotated, seam)
-        rotated = shift_left(rotated, 1)
     
     return rotated.rotate(90)
 
@@ -51,9 +50,12 @@ def main():
     Fonction principale
     '''
     im = Image.open("1.jpg")
+    grad_anthony = gradient(im)
     im_grad = Image.open("1g.jpg")
     hr = height_redim(im, 300, im_grad)
-    return hr
+    hr_anthony = height_redim(im, 300, im_grad)
+    hr.show()
+    hr_anthony.show()
     
 if __name__ == "__main__":
     main() 
