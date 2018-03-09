@@ -20,8 +20,9 @@ def resize(im, dec):
     return image2     
 
 def main():
-    im = Image.open('Images_test_python/originaux/1.png')
+    im = Image.open('1.jpg')
     img = gradient_prewitt.prewitt(im)
+    # img = Image.open('1g.jpg')
     cm = seam.calculate_cost_matrix(img)
     sm = seam.detect_seam(cm)
     image_smc = remove_seam(im,sm)
