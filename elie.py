@@ -23,10 +23,14 @@ def main():
     im = Image.open('1.jpg')
     img = gradient_prewitt.prewitt(im)
     # img = Image.open('1g.jpg')
-    cm = seam.calculate_cost_matrix(img)
-    sm = seam.detect_seam(cm)
-    image_smc = remove_seam(im,sm)
+    compteur = 20
+    while compteur!=0:
+        cm = seam.calculate_cost_matrix(img)
+        sm = seam.detect_seam(cm)
+        image_smc = remove_seam(im,sm)
+        img = remove_seam(img,sm)
+        compteur-=1
     image_smc.show()
-
+    img.show()
 if __name__ == "__main__":
     main()
