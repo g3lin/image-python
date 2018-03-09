@@ -3,19 +3,21 @@ import seam
 import gradient_prewitt
 
 def remove_seam(im,seam):
-    for elm in seam: #pour chaque element du seam
-        for x in range (im.size[0]): #pour chaque x 
-            for y in range (im.size[1]):# pour chaque y
-                if x > elm[0] and y == elm[1]: #lorsque x est supérieur à l'élement 0 et y vaut l'élement 1
-                    image = shift_left(im,1) # on decale les pixels de 1 vers la gauche => "supprime" le pixel de coordonnée (x,y)
-    return image #l'image modifiée est retournée
+    image = im.load()
+    for elm in seam: #pour chaque element du seam (de la forme (x,y))
+        for x in range (elm[0],im.size[0]-1): #pour chaque x 
+                image[x,elm[1]] = image[x+1,elm[1]]
+    final =  resize(im,(im.size[0],im.size[1]-1))    
+    return final #l'image modifiée est retournée
 
-def shift_left(im,nombre):
-    image = im.load() # on charge l'image pour pouvoir la modifier
-    for x in range(im.size[0]):
-        for y in range(im.size[1]):
-            image[x,y]= image[x-nombre,y] # decalage des pixels a gauche
-    return im
+def resize(im, dec):
+    image2 = Image.new("RGB",(dec[0],dec[1]))
+    image2_ = image2.load()
+    image = im.load()
+    for y in range (image2.size[1]):
+        for x in range (image2.size[0]):
+            image2_[x,y]=image[x*im.size[0]//image2.size[0],y*im.size[1]//image2.size[1]]
+    return image2     
 
 def main():
     im = Image.open('Images_test_python/originaux/1.png')
