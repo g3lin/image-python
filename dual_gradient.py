@@ -1,6 +1,25 @@
+'''
+Première étape : Détermination de la carte d'énergie de l'image (gradient)
+
+
+A ce stade, on dispose de : 
+    - une image à traiter
+
+Après avoir essayé différents gradients (Prewitt et Sobel), nous avons
+décidé d'utiliser un dual gradient.
+Ce fichier permet de déterminer et afficher (pour l'instant) le gradient
+de l'image donnée
+'''
+
 from PIL import Image
 import math
 def gradient(im):
+    '''
+    Affiche (pour l'instant) le dual gradient de l'image passée en paramètre.
+    Cette fonction utilise les fonctions décrites dans le lien suivant :
+    https://www.datasciencecentral.com/profiles/blogs/seam-carving-using-dynamic-programming-to-implement-context-aware
+
+    '''
     im1 = im.load()
     im2 = Image.new('L', (im.size[0], im.size[1]))
     im3 = im2.load()
@@ -22,6 +41,9 @@ def gradient(im):
     im2.show()
 
 def main():
+    '''
+    Fonction principale : charge une image et affiche son gradient
+    '''
     # test data
     im = Image.open('originaux/3.jpg')
     #im = Image.open('Tour.png')

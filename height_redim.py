@@ -17,11 +17,11 @@ Ce fichier permet d'appliquer un seam carving horizontal à partir du seam carvi
 
 from PIL import Image
 from seam import detect_seam 
-from seam import calculate_cost_matrix 
+from seam import calculate_cost_matrix
 from elie import remove_seam 
 from dual_gradient import gradient
 
-def height_redim(im, height, im_grad):
+def height_redim(im, repeat, im_grad):
     '''
     Cette fonction : 
         - tourne l'image et le gradient de l'image à 90° à droite
@@ -32,7 +32,7 @@ def height_redim(im, height, im_grad):
     rotated_grad = im_grad.rotate(270)
     
     # Utilisation de l'algorithme d'Antoine
-    while rotated.size[0] > height:                                     # >= peut etre ?
+    for k in range(repeat):                                     # >= peut etre ?
 
         # Partie d'Antoine (seam.py)
         cost_matrix = calculate_cost_matrix(rotated_grad)
@@ -40,7 +40,7 @@ def height_redim(im, height, im_grad):
 
         # Partie d'Elie (elie.py) 
         rotated = remove_seam(rotated, seam)
-    
+    rotated.show()
     return rotated.rotate(90)
 
 
@@ -50,12 +50,9 @@ def main():
     Fonction principale
     '''
     im = Image.open("1.jpg")
-    grad_anthony = gradient(im)
     im_grad = Image.open("1g.jpg")
-    hr = height_redim(im, 300, im_grad)
-    hr_anthony = height_redim(im, 300, im_grad)
+    hr = height_redim(im, 5, im_grad)
     hr.show()
-    hr_anthony.show()
     
 if __name__ == "__main__":
     main() 
