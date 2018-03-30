@@ -17,6 +17,7 @@ Ce fichier permet de supprimer la seam calculée en deux étapes :
 from PIL import Image
 import seam
 import gradient_prewitt
+import dual_gradient
 
 def remove_seam(im,seam):
     '''
@@ -27,7 +28,7 @@ def remove_seam(im,seam):
     for elm in seam: #pour chaque element du seam (de la forme (x,y))
         for x in range (elm[0],im.size[0]-1): #pour chaque x 
                 image[x,elm[1]] = image[x+1,elm[1]]
-    final =  resize(im,(im.size[0],im.size[1]-1))    
+    final =  resize(im,(im.size[0]-1,im.size[1]))    
     return final #l'image modifiée est retournée
 
 def resize(im, dec):
@@ -53,17 +54,18 @@ def main():
     en affichant l'image à chaque fin de boucle pour suivre l'évolution
     '''
     im = Image.open('1.jpg')
-    img = gradient_prewitt.prewitt(im)
+    image_smc = Image.new("RGB",(im.size[0],im.size[1]))
+    img = dual_gradient.gradient(im)
+    image_smc = im
     # img = Image.open('1g.jpg')
-    compteur = 20
+    compteur = 10
     while compteur!=0:
         cm = seam.calculate_cost_matrix(img)
         sm = seam.detect_seam(cm)
-        image_smc = remove_seam(im,sm)
-        img = remove_seam(img,sm)
+        image_smc = remove_seam(image_smc,sm)
+        #img = remove_seam(img,sm)
         compteur-=1
     image_smc.show()
-    img.show()
-    
+    #img.show()
 if __name__ == "__main__":
     main()
