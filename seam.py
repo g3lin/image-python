@@ -1,6 +1,9 @@
-from PIL import Image
-
 '''
+Deuxième étape : Détermination de la seam optimale
+
+A ce stade, on dispose de : 
+    - une image à traiter
+    - (Anthony) sa carte d'énergie
 
 Ce fichier permet de calculer le cout des differents seams au sein d'une matrice
 calculée à l'aide de la fonction calculate_cost_matrix() qui prend en parametre une image au mode L 
@@ -8,10 +11,15 @@ calculée à l'aide de la fonction calculate_cost_matrix() qui prend en parametr
 la fonction detect_seam() prend en parametre une matrice de cout calculée precedement et retourne le liste de tuples
 La fonction calcule le chemin le plus optimal au sein de la matrice de cout et retourne une liste de tuple contenant
 les x et y du pixel à supprimer
-
 '''
 
+from PIL import Image
+
 def calculate_cost_matrix(image_grad):
+    '''
+    Cette fonction calcule une matrice de coût d'une image à partir de son
+    gradient, et la retourne
+    '''
     im = image_grad
     cost_matrix = []    
     pix = im.load() # on cahrge l'image
@@ -57,6 +65,10 @@ def calculate_cost_matrix(image_grad):
     return cost_matrix
 
 def detect_seam(cost_matrix):
+    '''
+    Cette fonction détermine la seam optimale, qui sera enlevée, à partir 
+    de la matrice de coût de l'image
+    '''
     seam = []
     y = len(cost_matrix)-1
     min_x_value = cost_matrix[y][0]
@@ -89,6 +101,9 @@ def detect_seam(cost_matrix):
 
 
 def main():
+    '''
+    
+    '''
     # test data
     im = Image.open("1g.jpg")
     cm = calculate_cost_matrix(im)
