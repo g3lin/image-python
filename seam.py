@@ -1,6 +1,7 @@
 '''
 Deuxième étape : Détermination de la seam optimale
 
+
 A ce stade, on dispose de : 
     - une image à traiter
     - (Anthony) sa carte d'énergie
@@ -103,7 +104,7 @@ def detect_seam(cost_matrix):
 
 def main():
     '''
-    
+    Fonction principale : charge une image, calcule sa matrice de coût et détermine la seam à retirer
     '''
     # test data
     im = Image.open("1g.jpg")
