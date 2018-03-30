@@ -17,7 +17,7 @@ def gradient(im):
     '''
     Affiche (pour l'instant) le dual gradient de l'image passée en paramètre.
     Cette fonction utilise les fonctions décrites dans le lien suivant :
-    [URL]
+    https://www.datasciencecentral.com/profiles/blogs/seam-carving-using-dynamic-programming-to-implement-context-aware
 
     '''
     im1 = im.load()
@@ -42,7 +42,7 @@ def gradient(im):
 
 def main():
     '''
-    Fonction principale
+    Fonction principale : charge une image et affiche son gradient
     '''
     # test data
     im = Image.open('originaux/3.jpg')
