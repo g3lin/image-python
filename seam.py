@@ -103,7 +103,7 @@ def detect_seam(cost_matrix):
 
 def main():
     '''
-    
+    Fonction principale : charge une image, calcule sa matrice de coût et détermine la seam à retirer
     '''
     # test data
     im = Image.open("1g.jpg")
