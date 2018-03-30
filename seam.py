@@ -1,6 +1,7 @@
 '''
 Deuxième étape : Détermination de la seam optimale
 
+
 A ce stade, on dispose de : 
     - une image à traiter
     - (Anthony) sa carte d'énergie
