@@ -1,3 +1,4 @@
+# coding=utf-8
 '''
 Deuxième étape : Détermination de la seam optimale
 
@@ -27,10 +28,8 @@ def calculate_cost_matrix(image_grad):
     pix = im.load() # on cahrge l'image
 
     # Calcul de la matrice des couts
-    for y in range(0,im.size[1]):
-        #on crée un nouveau tableau pour chaque ligne du tableau
-
-        for x in range(0, im.size[0]):
+    for y in range(len(cost_matrix)):
+        for x in range(len(cost_matrix[0])):
             
             if y>0:
                 lastline = cost_matrix[y-1] 
@@ -42,7 +41,7 @@ def calculate_cost_matrix(image_grad):
                     cost = pix[x,y] + min(c2,c3)
 
 
-                elif x+1 >= im.size[0]:
+                elif x+1 > im.size[0]:
                     # cas où on est vers le milieu
                     c1 = lastline[x-1]
                     c2 = lastline[x]
@@ -60,7 +59,7 @@ def calculate_cost_matrix(image_grad):
                 cost = pix[x,y] 
                 # si on est dans la ligne du haut ( y = 0 ), on va juste mettre en cout la valeur du pixel
             # on rajoute à la ligne le cout du pixel
-            cost_matrix[y][x] = cost[0]
+            cost_matrix[y][x] = cost
 
         # on rajoute à la matrice de couts la lgne deds couts
         
@@ -73,29 +72,16 @@ def detect_seam(cost_matrix):
     '''
     seam = []
     y = len(cost_matrix)-1
-    min_x_value = cost_matrix[y][0]
-    min_x = 0
 
     # pour la ligne tout en bas de l'image 
-    for x in range( len(cost_matrix[1])-1 ):
-        # On cherche la valeur minimum sur toute cette ligne
-        if cost_matrix[y][x] < min_x_value:
-            min_x_value = cost_matrix[y][x]
-            min_x = x
-    x = min_x
+    x = np.argmin(cost_matrix[y])
     # On rajoute au seam le tuple du pixel à supprimer sur la ligne du bas
     seam += [(x,y)]
 
     # Pour toutes les autres lignes que celle du bas on va remonter
     for y in range(len(cost_matrix)-2, -1,-1):
-        min_x_value = cost_matrix[y][x]
-        min_x = x
-        for x in range( x-1,x+2 ):
-            # on choisit le minimum entre le pixel en haut celui en hait à droite et celui en haut à gauche
-            if cost_matrix[y][x] < min_x_value :
-                min_x_value = cost_matrix[y][x]
-                min_x = x
-        x = min_x
+
+        x = np.argmin(cost_matrix[y][x-1:x+2])
         #  une fois ce minimum au niveau des couts calculé, on ajoute cela au seam
         seam += [(x,y)]
     # une fois toutes les lignes traitées on peut retourner la liste de tuples contenant les poins à supprimer
