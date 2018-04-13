@@ -28,33 +28,31 @@ def calculate_cost_matrix(image_grad):
 
     # Calcul de la matrice des couts
     for y in range(0,im.size[1]):
+        if y>0:
+            lastline = cost_matrix[y-1] 
         #on crée un nouveau tableau pour chaque ligne du tableau
         for x in range(0, im.size[0]):
             
             if y>0:
-                lastline = cost_matrix[y-1] 
-                if x-1 < 0:
-                    # cas où on est à gauche de l'image
-                    c2 = lastline[x] 
-                    c3 = lastline[x+1]
-                    # le cout du pixel est la somme la valeur du pixel avec le minimum du cout du pixel en haut et celui en haut à droite
-                    cost = pix[x,y] + min(c2,c3)
-
-
-                elif x+1 >= im.size[0]:
-                    # cas où on est vers la droite
-                    c1 = lastline[x-1]
-                    c2 = lastline[x]
-                    # le cout du pixel est la somme la valeur du pixel avec le minimum du cout du pixel en haut et celui en haut à gauche
-                    cost = pix[x,y] + min(c1,c2)
-
-                else:
+                if x>0 and x<im.size[0]-1:
                     # cas où on est au milieu
-                    c1 = lastline[x-1]
-                    c2 = lastline[x]
-                    c3 = lastline[x+1]
                     # le cout du pixel est la somme la valeur du pixel avec le minimum du cout du pixel en haut et celui en haut à droite et celui en haut à gauche
-                    cost = pix[x,y] + min(c1,c2,c3)
+                    cost = pix[x,y] + min(lastline[x-1],lastline[x], lastline[x+1])
+
+
+                elif x <= 0:
+                    # cas où on est à gauche de l'image
+
+                    # le cout du pixel est la somme la valeur du pixel avec le minimum du cout du pixel en haut et celui en haut à droite
+                    cost = pix[x,y] + min(lastline[x] ,lastline[x+1])
+
+
+                elif x >= im.size[0]-1:
+                    # cas où on est vers la droite
+                    # le cout du pixel est la somme la valeur du pixel avec le minimum du cout du pixel en haut et celui en haut à gauche
+                    cost = pix[x,y] + min(lastline[x-1],lastline[x])
+
+                
             else:
                 cost = pix[x,y] 
             
