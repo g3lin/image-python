@@ -85,19 +85,19 @@ def detect_seam(cost_matrix):
 
         if x-1 < 0:
             # cas où on est à gauche de l'image
-            x = int(np.argmin(cost_matrix[y][x:x+2]))
+            x = int(np.argmin(cost_matrix[y][x:x+2]))+x
                     
 
 
         elif x+1 >= len(cost_matrix[0]):
             #cas ou on est à droite
-            x = int(np.argmin(cost_matrix[y][x-1:x+1]))
+            x = int(np.argmin(cost_matrix[y][x-1:x+1]))+x-1
             
             
 
         else:
             # cas où on est au milieu
-            x = int(np.argmin(cost_matrix[y][x-1:x+2]))
+            x = int(np.argmin(cost_matrix[y][x-1:x+2]))+x-1
 
         #  une fois ce minimum au niveau des couts calculé, on ajoute cela au seam
         seam += [(x,y)]
