@@ -3,6 +3,7 @@ import seam
 import gradient_prewitt
 import dual_gradient
 import elie
+import seam_carving
 
 def main():
     '''
@@ -18,13 +19,7 @@ def main():
     img = dual_gradient.gradient(im)
     compteur = 5
     while compteur!=0:
-        cm = seam.calculate_cost_matrix(img)
-        sm = seam.detect_seam(cm)
-        #for elm in sm: #pour chaque element du seam (de la forme (x,y))
-         #   im.load()[elm[0],elm[1]]= 255, 0, 0
-        #im.show()
-        im = elie.remove_seam(im,sm)
-        img = elie.remove_seam(img,sm)
+        im, img = seam_carving.vertical_carving(im,img)
         compteur-=1
     im.show()
     #img.show()
