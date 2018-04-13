@@ -2,7 +2,7 @@ from PIL import Image
 import seam
 import gradient_prewitt
 import dual_gradient
-import elie
+import seam_treatment
 
 def main():
     '''
@@ -24,8 +24,8 @@ def main():
         #for elm in sm: #pour chaque element du seam (de la forme (x,y))
          #   im.load()[elm[0],elm[1]]= 255, 0, 0
         #im.show()
-        im = elie.remove_seam(im,sm)
-        img = elie.remove_seam(img,sm)
+        im = seam_treatment.remove_seam(im,sm)
+        img = seam_treatment.remove_seam(img,sm)
         compteur-=1
     im.show()
     #img.show()
