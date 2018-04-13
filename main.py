@@ -2,7 +2,7 @@ from PIL import Image
 import seam
 import gradient_prewitt
 import dual_gradient
-import elie
+import seam_treatment
 import seam_carving
 
 def main():
@@ -14,10 +14,11 @@ def main():
         - Suppression de la seam déterminée
     en affichant l'image à chaque fin de boucle pour suivre l'évolution
     '''
-    im = Image.open('chato.jpg')
+    im = Image.open('1.jpg')
     #image = im.load()
     img = dual_gradient.gradient(im)
-    compteur = 5
+    print("grad fini")
+    compteur = 10
     while compteur!=0:
         im, img = seam_carving.vertical_carving(im,img)
         compteur-=1
