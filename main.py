@@ -9,7 +9,7 @@ def main():
     '''
     Fonction principale : charge une image et son gradient et applique
     un seam carving k fois en plusieurs étapes ... : 
-        - Calcul d'une matrice de coût de l'image à partir de son gradient
+        - Calcul d'une ma*trice de coût de l'image à partir de son gradient
         - Detection de la seam optimale à partir de la pmatrice de coût
         - Suppression de la seam déterminée
     en affichant l'image à chaque fin de boucle pour suivre l'évolution
