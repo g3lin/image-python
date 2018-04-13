@@ -13,10 +13,11 @@ def main():
         - Suppression de la seam déterminée
     en affichant l'image à chaque fin de boucle pour suivre l'évolution
     '''
-    im = Image.open('chato.jpg')
+    im = Image.open('1.jpg')
     #image = im.load()
     img = dual_gradient.gradient(im)
-    compteur = 5
+    print("grad fini")
+    compteur = 10
     while compteur!=0:
         cm = seam.calculate_cost_matrix(img)
         sm = seam.detect_seam(cm)
