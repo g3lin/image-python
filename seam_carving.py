@@ -15,12 +15,16 @@ def vertical_carving(im, img):
     return (im, img)
 
 def horizontal_carving(im,img):
-    im = im.rotate(270)
-    img = img.rotate(270)
+    im = im.rotate(-90 , expand=True)
+    img = img.rotate(-90 , expand=True)
     im, img = vertical_carving(im,img)
-    im = im.rotate(90)
-    img = img.rotate(90)
+    im = im.rotate(90 , expand=True)
+    img = img.rotate(90 , expand=True)
     return (im, img)
 
+def main():
+    horizontal_carving(Image.open('1.jpg'), Image.open('1g.jpg'))
+
+
 if __name__ == "__main__":
-    vertical_carving(Image.open('1.jpg'), Image.open('1g.jpg'))
+    main()
