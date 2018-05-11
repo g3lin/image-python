@@ -21,6 +21,12 @@ def main():
     compteur = 10
     while compteur!=0:
         im, img = seam_carving.horizontal_carving(im,img)
+        im.save("gif/h"+str(10-compteur)+".bmp")
+        compteur-=1
+    compteur = 10
+    while compteur!=0:
+        im, img = seam_carving.vertical_carving(im,img)
+        im.save("gif/v"+str(10-compteur)+".bmp")
         compteur-=1
     im.show()
     #img.show()
