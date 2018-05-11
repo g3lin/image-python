@@ -14,7 +14,7 @@ def main():
         - Suppression de la seam déterminée
     en affichant l'image à chaque fin de boucle pour suivre l'évolution
     '''
-    im = Image.open('1.jpg')
+    im = Image.open('5.jpg')
     #image = im.load()
     img = dual_gradient.gradient(im)
     print("grad fini")
