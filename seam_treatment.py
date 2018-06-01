@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 '''
 Troisième étape : Destruction de la seam déterminée et décalage de l'image
 

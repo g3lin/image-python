@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 '''
 Première étape : Détermination de la carte d'énergie de l'image (gradient)
 

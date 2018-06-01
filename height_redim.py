@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 '''
 Dernière étape : Utilisation du seam carving vertical pour faire un seam carving horizontal
 

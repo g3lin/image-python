@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 '''
 Deuxième étape : Détermination de la seam optimale
 
