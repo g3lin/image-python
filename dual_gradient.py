@@ -37,7 +37,7 @@ def gradient(im):
             dgy = im1[x, ypu][1] - im1[x, ypd][1]
             dby = im1[x, ypu][2] - im1[x, ypd][2]
             G = round(math.sqrt(drx**2+dgx**2+dbx**2+dry**2+dgy**2+dby**2))
-            im3[x,y] = G
+            im3[x,y] = (G,)
     return im2
     #im2.show()
 
