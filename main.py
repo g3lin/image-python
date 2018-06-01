@@ -10,6 +10,9 @@ import seam_carving
 def main():
     '''
     Fonction principale
+
+
+    exemple : python main.py "1.jpg" 0 30 30
     
     Paramètres : 
         - Chemin d'accès à l'image                  (string)
@@ -76,7 +79,7 @@ def main():
             im, img = seam_carving.vertical_carving(im,img)
             im.save("gif/v"+str(kp-compteur)+".bmp")
             compteur-=1
-        im.show()
-    #img.show()
+        im.save("result.bmp")
+        #im.show()
 if __name__ == "__main__":
     main()
