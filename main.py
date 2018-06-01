@@ -35,7 +35,7 @@ def main():
     en affichant l'image à chaque fin de boucle pour suivre l'évolution
     '''
 
-    
+
     chemin = str(sys.argv[1])
     choix = int(sys.argv[2])
     k = int(sys.argv[3])
@@ -58,25 +58,25 @@ def main():
     if(k > im.size[1] and choix != 1):
         print("Votre troisième argument est invalide : dépassement de la taille de l'image")
         quit()
-    if(k > im.size[0] and choix != 1):
+    if(kp > im.size[0] and choix != 1):
         print("Votre quatrième argument est invalide : dépassement de la taille de l'image")
         quit()
     
     #image = im.load()
     img = dual_gradient.gradient(im)
     print("grad fini")
-    
-    compteur = k
-    while compteur>0:
-        im, img = seam_carving.horizontal_carving(im,img)
-        im.save("gif/h"+str(k-compteur)+".bmp")
-        compteur-=1
-    compteur = kp
-    while compteur>0:
-        im, img = seam_carving.vertical_carving(im,img)
-        im.save("gif/v"+str(kp-compteur)+".bmp")
-        compteur-=1
-    im.show()
+    if(choix == 0):                          # Rapetissement
+        compteur = k
+        while compteur>0:
+            im, img = seam_carving.horizontal_carving(im,img)
+            im.save("gif/h"+str(k-compteur)+".bmp")
+            compteur-=1
+        compteur = kp
+        while compteur>0:
+            im, img = seam_carving.vertical_carving(im,img)
+            im.save("gif/v"+str(kp-compteur)+".bmp")
+            compteur-=1
+        im.show()
     #img.show()
 if __name__ == "__main__":
     main()
