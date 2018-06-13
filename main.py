@@ -6,6 +6,7 @@ import gradient_prewitt
 import dual_gradient
 import seam_treatment
 import seam_carving
+import agrandir
 
 def main():
     '''
@@ -67,19 +68,57 @@ def main():
     
     #image = im.load()
     img = dual_gradient.gradient(im)
-    print("grad fini")
+    #print("grad fini")
     if(choix == 0):                          # Rapetissement
+        im.show()
         compteur = k
         while compteur>0:
             im, img = seam_carving.horizontal_carving(im,img)
             im.save("gif/h"+str(k-compteur)+".bmp")
             compteur-=1
+        im.show()
         compteur = kp
         while compteur>0:
             im, img = seam_carving.vertical_carving(im,img)
             im.save("gif/v"+str(kp-compteur)+".bmp")
             compteur-=1
-        im.save("result.bmp")
+        im.save("result_rapetissement.bmp")
         #im.show()
+    elif(choix == 1):                       # Agrandissement
+        compteur = k
+        while compteur>0:
+            im, img = seam_carving.add_horizontal_carving(im,img)
+            compteur-=1
+        compteur = kp
+        while compteur>0:
+            im, img = seam_carving.add_vertical_carving(im,img)
+            compteur-=1
+        im.save("result_agrandissement.bmp")
+    else:                       # Elargissement
+
+        # On rapetissit d'abord
+        compteur = k
+        while compteur>0:
+            im, img = seam_carving.horizontal_carving(im,img)
+            #im.save("gif/h"+str(k-compteur)+".bmp")
+            compteur-=1
+        compteur = kp
+        while compteur>0:
+            im, img = seam_carving.vertical_carving(im,img)
+            #im.save("gif/v"+str(kp-compteur)+".bmp")
+            compteur-=1
+
+        #Et ensuite on agrandit
+        compteur = k
+        while compteur>0:
+            im, img = seam_carving.add_horizontal_carving(im,img)
+            compteur-=1
+        compteur = kp
+        while compteur>0:
+            im, img = seam_carving.add_vertical_carving(im,img)
+            compteur-=1
+        im.save("result_elargissement.bmp")
+
+        
 if __name__ == "__main__":
     main()

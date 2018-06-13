@@ -17,11 +17,11 @@ def vertical_carving(im, img):
     return (im, img)
 
 def horizontal_carving(im,img):
-    im = im.rotate(270)
-    img = img.rotate(270)
+    im = im.rotate(-90, expand=True)
+    img = img.rotate(-90, expand=True)
     im, img = vertical_carving(im,img)
-    im = im.rotate(90)
-    img = img.rotate(90)
+    im = im.rotate(90, expand=True)
+    img = img.rotate(90, expand=True)
     return (im, img)
 
 def add_horizontal_carving(im, img):
@@ -32,6 +32,14 @@ def add_horizontal_carving(im, img):
     #im.show()
     im = agrandir.add_seam_image(im,sm)
     img = agrandir.add_seam_gradient(img,sm)
+    return (im, img)
+
+def add_vertical_carving(im, img):
+    im = im.rotate(-90, expand=True)
+    img = img.rotate(-90, expand=True)
+    im, img = add_horizontal_carving(im, img)
+    im = im.rotate(90, expand=True)
+    img = img.rotate(90, expand=True)
     return (im, img)
 
 if __name__ == "__main__":
