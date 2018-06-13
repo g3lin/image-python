@@ -6,7 +6,7 @@ import dual_gradient
 import seam_treatment
 import agrandir
 
-def vertical_carving(im, img):
+def horizontal_carving(im, img):
     cm = seam.calculate_cost_matrix(img)
     sm = seam.detect_seam(cm)
     #for elm in sm: #pour chaque element du seam (de la forme (x,y))
@@ -16,10 +16,10 @@ def vertical_carving(im, img):
     img = seam_treatment.remove_seam(img,sm)
     return (im, img)
 
-def horizontal_carving(im,img):
+def vertical_carving(im,img):
     im = im.rotate(-90, expand=True)
     img = img.rotate(-90, expand=True)
-    im, img = vertical_carving(im,img)
+    im, img = horizontal_carving(im,img)
     im = im.rotate(90, expand=True)
     img = img.rotate(90, expand=True)
     return (im, img)
@@ -43,4 +43,4 @@ def add_vertical_carving(im, img):
     return (im, img)
 
 if __name__ == "__main__":
-    vertical_carving(Image.open('1.jpg'), Image.open('1g.jpg'))
+    horizontal_carving(Image.open('1.jpg'), Image.open('1g.jpg'))
