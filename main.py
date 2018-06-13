@@ -100,24 +100,24 @@ def main():
         compteur = k
         while compteur>0:
             im, img = seam_carving.vertical_carving(im,img)
-            im.save("gif/1h"+str(k-compteur)+".bmp")
+            #im.save("gif/1h"+str(k-compteur)+".bmp")
             compteur-=1
         compteur = kp
         while compteur>0:
             im, img = seam_carving.horizontal_carving(im,img)
-            im.save("gif/1v"+str(kp-compteur)+".bmp")
+            #im.save("gif/1v"+str(kp-compteur)+".bmp")
             compteur-=1
 
         #Et ensuite on agrandit
         compteur = k
         while compteur>0:
             im, img = seam_carving.add_horizontal_carving(im,img)
-            im.save("gif/2h"+str(kp-compteur)+".bmp")
+            #im.save("gif/2h"+str(kp-compteur)+".bmp")
             compteur-=1
         compteur = kp
         while compteur>0:
             im, img = seam_carving.add_vertical_carving(im,img)
-            im.save("gif/2v"+str(kp-compteur)+".bmp")
+            #im.save("gif/2v"+str(kp-compteur)+".bmp")
             compteur-=1
         im.save("result_elargissement.bmp")
 
