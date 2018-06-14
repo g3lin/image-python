@@ -76,7 +76,7 @@ def main():
             im, img = seam_carving.horizontal_carving(im,img)
             im.save("gif/v"+str(kp-compteur)+".bmp")
             compteur-=1
-        im.save("result_rapetissement.bmp")
+        im.save("result.bmp")
     elif(choix == 1):                       # Agrandissement
         compteur = k
         while compteur>0:
@@ -86,7 +86,7 @@ def main():
         while compteur>0:
             im, img = seam_carving.add_vertical_carving(im,img)
             compteur-=1
-        im.save("result_agrandissement.bmp")
+        im.save("result.bmp")
     else:                       # Elargissement
 
         # On rapetissit d'abord
@@ -112,7 +112,7 @@ def main():
             im, img = seam_carving.add_vertical_carving(im,img)
             #im.save("gif/2v"+str(kp-compteur)+".bmp")
             compteur-=1
-        im.save("result_elargissement.bmp")
+        im.save("result.bmp")
 
         
 if __name__ == "__main__":
