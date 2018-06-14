@@ -1,12 +1,8 @@
 # -*- coding: utf-8 -*-
 from PIL import Image
 import sys
-import seam
-import gradient_prewitt
 import dual_gradient
-import seam_treatment
 import seam_carving
-import agrandir
 
 def main():
     '''
@@ -70,20 +66,17 @@ def main():
     img = dual_gradient.gradient(im)
     #print("grad fini")
     if(choix == 0):                          # Rapetissement
-        im.show()
         compteur = k
         while compteur>0:
             im, img = seam_carving.vertical_carving(im,img)
             im.save("gif/h"+str(k-compteur)+".bmp")
             compteur-=1
-        im.show()
         compteur = kp
         while compteur>0:
             im, img = seam_carving.horizontal_carving(im,img)
             im.save("gif/v"+str(kp-compteur)+".bmp")
             compteur-=1
         im.save("result_rapetissement.bmp")
-        #im.show()
     elif(choix == 1):                       # Agrandissement
         compteur = k
         while compteur>0:

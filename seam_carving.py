@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 from PIL import Image
 import seam
-import gradient_prewitt
-import dual_gradient
 import seam_treatment
 import agrandir
 

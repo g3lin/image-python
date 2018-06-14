@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
 from PIL import Image
-import seam
-import gradient_prewitt
-import dual_gradient
 
 def add_seam_image(im,seam):
     '''

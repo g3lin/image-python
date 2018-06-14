@@ -112,7 +112,7 @@ def main():
     im = Image.open("1g.jpg")
     im = im.convert('L')
     cm = calculate_cost_matrix(im)
-    sm = detect_seam(cm)
+    detect_seam(cm)
 
 
 if __name__ == "__main__":

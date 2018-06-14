@@ -16,9 +16,6 @@ Ce fichier permet de supprimer la seam calculée en deux étapes :
 '''
 
 from PIL import Image
-import seam
-import gradient_prewitt
-import dual_gradient
 
 def remove_seam(im,seam):
     '''
